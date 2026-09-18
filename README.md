@@ -43,7 +43,7 @@ The library uses template traits extraction to automatically deduce C++ function
 
 Taking a **class member function (`QcNativeMemberFuncInvoker`)** as an example, its execution workflow is as follows:
 
-1. **Obtain `this**`: Fetches the member object pointer via `QcOpaque::GetOpaquePtr<T>(ctx, this_val)`. If it returns `nullptr` (the object was destroyed on the C++ side, or JS passed an invalid `this`), a `TypeError` is thrown.
+1. **Obtain `this`**: Fetches the member object pointer via `QcOpaque::GetOpaquePtr<T>(ctx, this_val)`. If it returns `nullptr` (the object was destroyed on the C++ side, or JS passed an invalid `this`), a `TypeError` is thrown.
 2. **Unpack Closure**: Reads the bound member function pointer.
 3. **Unpack Arguments (`ConvertJsArgToNative`)**: Converts each parameter and **automatically guards against null pointer dereferencing** during pointer/reference dereferencing or implicit conversions.
 4. **Execute Member Function**: Safely executes `(this_ptr->*method)(...)`.
