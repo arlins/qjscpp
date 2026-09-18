@@ -31,6 +31,16 @@
 
 Prevents crashes caused by "C++ native objects being destroyed externally while JS still holds a reference and continues to call member functions":
 
+```
+[ QuickJS ]
+JSValue (this)
+    │
+    ▼ (Opaque)
+[ QcTracker (control block) ]       ◄──────      [ C++ ]
+    ├── rawPtr (NativeObject*)       ─────►      NativeObject
+    └── isAlive (bool)           ◄──────         (delete NativeObject: isAlive = false)
+```
+
 * **Intrusive Tracking**: Exported classes must inherit from the `QcTrackable` base class for automatic lifecycle management. The invalid status is automatically synchronized upon object destruction. If JS attempts to invoke a member function on a destroyed object, a `TypeError` exception is thrown instead of causing a crash.
 
 * **Non-Intrusive Tracking**: Designed for third-party C++ classes where inheriting from a base class is impractical. Developers must manually call `QcTrackerResolver::MarkObjectDestroyed` when the object is destroyed, leveraging a global Canonical Address mapping to achieve lifecycle validation and protection.
