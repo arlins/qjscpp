@@ -183,7 +183,7 @@ int main() {
     rectCls.AddNativeMemFunc("get_w", &MyRect::get_w);
     rectCls.AddNativeMemFunc("get_h", &MyRect::get_h);
 
-    // Export demo
+    // Export test module
     QcModule testModule(ctx, "test");
     testModule.ExportNativeFunc("TestMyPointArg", TestMyPointArg);
     testModule.ExportNativeFunc("TestMyRectArg", TestMyRectArg);
@@ -205,7 +205,7 @@ int main() {
     }
 
     // Detach module
-    QcModule::DetachModule(ctx, "demo");
+    QcModule::DetachModule(ctx, "test");
     return 0;
 }
 
