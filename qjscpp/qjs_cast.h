@@ -19,9 +19,9 @@
 // 
 // QcDynamicCastFast vs. QcDynamicCast:
 // - QcDynamicCastFast: Compile-time fixed 2D static array. Zero heap allocations,
-//   optimal cache locality, and fastest cast (~3.8 ns). Capped by QC_CAST_MAX_CLASS_COUNT.
+//   optimal cache locality, and fastest cast (~1.2 ns). Capped by QC_CAST_MAX_CLASS_COUNT.
 // - QcDynamicCast: Dynamic 1D `std::vector` matrix. Grows automatically to support
-//   unlimited classes, with slightly higher cast overhead (~5.5 ns).
+//   unlimited classes, with slightly higher cast overhead (~1.6 ns).
 // ===================================================
 
 #pragma once
